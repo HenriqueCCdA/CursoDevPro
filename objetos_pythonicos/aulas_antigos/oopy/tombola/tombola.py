@@ -16,3 +16,6 @@ class Tombola():
 
     def sortear(self):
         return self.itens.pop()
+
+    def __call__(self):
+        return self.sortear()
