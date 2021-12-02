@@ -3,8 +3,12 @@ from pytest import approx, raises
 
 class Quantidade:
 
-    def  __init__(self, nome):
+    def  __init__(self):
+        self._nome = None
+
+    def set_nome(self, nome):
         self._nome=f'_{nome}'
+
 
     def __get__(self, item, owner):
         return getattr(item, self._nome)
@@ -17,8 +21,15 @@ class Quantidade:
 
 class ItemPedito:
 
-    quantidade = Quantidade('quantidade')
-    preco = Quantidade('preco')
+    quantidade = Quantidade()
+    preco = Quantidade()
+
+    def __new__(cls, *args, **kwargs):
+        for nome, propriedade in cls.__dict__.items():
+            if hasattr(propriedade, 'set_nome'):
+                propriedade.set_nome(nome)
+        return super().__new__(cls)
+
 
     def __init__(self, descricao, preco, quantidade) -> None:
         self.descricao = descricao
