@@ -1,3 +1,4 @@
+from abc import ABC, abstractmethod
 from decimal import Decimal
 
 class Item:
@@ -35,7 +36,17 @@ class Pedido:
         return promocao.calcular_desconto(self)
 
 
-class DescontoItemRepetido:
+class Desconto(ABC):
+    '''
+    Classe base de todos os descontos
+    '''
+    @abstractmethod
+    def calcular_desconto(self, pedido):
+        '''
+        Deve calcular o valor de descontos de acordo com o pedido.
+        '''
+
+class DescontoItemRepetido(Desconto):
     '''
     Fornece 10% de desconto em cima de itens com quantidade igual ou superior a 10
     '''
