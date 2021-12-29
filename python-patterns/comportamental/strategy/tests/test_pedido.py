@@ -1,7 +1,8 @@
 import pytest
 from decimal import Decimal
 
-from comportamental.strategy.pedido import Item, Pedido, DescontoItemRepetido
+from comportamental.strategy.pedido import Item, Pedido
+from comportamental.strategy.promocao import desconto_item_repetido
 
 
 def test_adicionar_item():
@@ -41,6 +42,5 @@ def pedido_item_repetido():
 def test_total_sem_promocao(pedido_item_repetido):
     assert Decimal('1000.00') == pedido_item_repetido.total()
 
-def test_total_sem_promocao(pedido_item_repetido):
-    desconto = DescontoItemRepetido()
-    assert Decimal('900.00') == pedido_item_repetido.total(desconto)
+def test_total_com_desconto_por_item_repetido(pedido_item_repetido):
+    assert Decimal('900.00') == pedido_item_repetido.total(desconto_item_repetido)
