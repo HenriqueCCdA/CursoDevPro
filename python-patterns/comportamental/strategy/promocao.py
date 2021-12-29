@@ -12,6 +12,15 @@ class Desconto(ABC):
         Deve calcular o valor de descontos de acordo com o pedido.
         '''
 
+
+class _DescontoNullObject:
+    def calcular_desconto(self, pedido):
+        return pedido.subtotal()
+
+
+desconto_null_object = _DescontoNullObject()
+
+
 class _DescontoItemRepetido(Desconto):
     '''
     Fornece 10% de desconto em cima de itens com quantidade igual ou superior a 10
