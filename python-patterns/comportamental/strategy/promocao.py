@@ -36,6 +36,11 @@ desconto_item_repetido = _DescontoItemRepetido()
 
 class _DescontoGrandePedito(Desconto):
     def calcular_desconto(self, pedido):
+
+        subtotal = pedido.subtotal()
+        if subtotal < 10000:
+            return subtotal
+
         return pedido.subtotal() * Decimal('0.95')
 
 
