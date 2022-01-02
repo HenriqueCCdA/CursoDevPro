@@ -18,3 +18,9 @@ def desconto_grande_pedido(pedido):
         return subtotal
 
     return pedido.subtotal() * Decimal('0.95')
+
+
+todos_descontos=[desconto_item_repetido, desconto_grande_pedido]
+
+def melhor_promocao(pedido):
+    return min(desconto(pedido) for desconto in todos_descontos)
