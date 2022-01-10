@@ -36,7 +36,6 @@ def torre_de_hanoi(numero_de_discos: int):
     _torre_de_hanoi_recursivo(numero_de_discos, origem='A', destino='B', auxiliar='C')
 
 
-
 if __name__ == '__main__':
     for i in range(1, 10):
         print(f'#### Hanoi para {i} discos')
